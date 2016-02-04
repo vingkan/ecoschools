@@ -254,18 +254,18 @@ input{
 
 div.circle-wrapper{
 
-	@diameter: 100vw - (4 * @DefaultPadding);
+	@diameter: (50*@vh) - (4 * @DefaultPadding);
 	margin: @DefaultPadding auto;
-	background: @OverallOrange;
+	background: @LearningLime;
 	border-radius: 50%;
 	width: @diameter;
 	height: @diameter;
 	position: relative;
 
-	@elementSize: 10vw;
+	@elementSize: 0.20 * @diameter;
 
-	.CircularPosition(@diameter, @angle){
-		transform: rotate(-1 * @angle) translate(0.5 * @diameter) rotate(@angle);
+	.CircularPosition(@dm, @angle){
+		transform: rotate(-1 * @angle) translate(0.5 * @dm) rotate(@angle);
 	}
 
 	.circle-element{
@@ -280,14 +280,80 @@ div.circle-wrapper{
 	h1.circle-element{
 		text-align: center;
 		width: @diameter;
+		color: @TeachingTeal;
 		top: 50% - (1.75 * @tx);
 		left: 0%;
 		display: inline;
 		margin: 0 auto;
 	}
 
+	div.circle-chord{
+
+		.WipingChord(){
+			@-webkit-keyframes wipeChord{
+				0%{
+					border-color: @OverallOrange;
+				}
+				50%{
+					border-color: @AcademicAqua;
+				}
+				100%{
+					border-color: @OverallOrange;
+				}
+			}
+			animation: wipeChord 5s linear infinite;
+		}
+
+		//.WipingChord();
+
+		.circle-element();
+		left: 0%;
+		display: block;
+		margin: 0 auto;
+		height: 0;
+		width: 0.5 * @diameter;
+		border: 2px dashed @OverallOrange;
+		transform: translate(-0.125 * @diameter, 0.125 * @diameter * sqrt(3)) rotate(60deg);
+
+	}
+
+	@half-x: 0.125 * @diameter;
+	@x-root-3: 0.125 * @diameter * sqrt(3);
+
+	div.circle-chord{
+
+		&:nth-child(3){
+			transform: rotate(180deg) translate(-2 * @half-x, -2 * @x-root-3);
+		}
+		&:nth-child(4){
+			transform: rotate(120deg) translate(-1 * @half-x, -3 * @x-root-3);
+		}
+		&:nth-child(5){
+			transform: rotate(120deg) translate(-1 * @half-x, -3 * @x-root-3);
+		}
+		&:nth-child(6){
+			transform: rotate(240deg) translate(0 * @half-x, 0 * @x-root-3);
+		}
+
+
+	}
+
 	img{
-		.CircularPosition(@diameter, 90deg)
+
+		&:nth-child(8){.CircularPosition(@diameter, 0deg)}
+		&:nth-child(9){.CircularPosition(@diameter, 60deg)}
+		&:nth-child(10){.CircularPosition(@diameter, 120deg)}
+		&:nth-child(11){.CircularPosition(@diameter, 180deg)}
+		&:nth-child(12){.CircularPosition(@diameter, 240deg)}
+		&:nth-child(13){.CircularPosition(@diameter, 300deg)}
+
+		&:hover{
+			width: 1.5 * @elementSize;
+			height: 1.5 * @elementSize;
+		}
+
+		.AnimateAll();
+		
 	}
 
 	.AnimateAll();
