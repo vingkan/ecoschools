@@ -246,6 +246,55 @@ input{
 }
 
 /*--------------------------------------------*/
+/*---> CIRCLE BULLSHIT <----------------------*/
+/*--------------------------------------------*/
+
+//As instructed in S/O:
+//http://stackoverflow.com/questions/12813573/position-icons-into-circle
+
+div.circle-wrapper{
+
+	@diameter: 100vw - (4 * @DefaultPadding);
+	margin: @DefaultPadding auto;
+	background: @OverallOrange;
+	border-radius: 50%;
+	width: @diameter;
+	height: @diameter;
+	position: relative;
+
+	@elementSize: 10vw;
+
+	.CircularPosition(@diameter, @angle){
+		transform: rotate(-1 * @angle) translate(0.5 * @diameter) rotate(@angle);
+	}
+
+	.circle-element{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: @elementSize;
+		height: @elementSize;
+		margin: -0.5 * @elementSize;
+	}
+
+	h1.circle-element{
+		text-align: center;
+		width: @diameter;
+		top: 50% - (1.75 * @tx);
+		left: 0%;
+		display: inline;
+		margin: 0 auto;
+	}
+
+	img{
+		.CircularPosition(@diameter, 90deg)
+	}
+
+	.AnimateAll();
+
+}
+
+/*--------------------------------------------*/
 /*---> SCROLLBAR <----------------------------*/
 /*--------------------------------------------*/
 
