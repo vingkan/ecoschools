@@ -122,12 +122,63 @@ div.sky{
 	background: @AcademicAqua;
 }
 
-div.slant-left{
+.Slant(@slantColor, @slantHeight, @left){
 	
+	margin: auto (-1 * @DefaultPadding);
+	margin-top: -1 * @slantHeight;
+	width: 0;
+	height: 0;
+	border-top: @slantHeight solid transparent;
+	border-bottom: -100vw solid transparent;
+	
+	& + div.dramatic{
+		width: 100vw;
+		margin: auto (-1 * @DefaultPadding);
+		padding: @DefaultPadding;
+		padding-bottom: 1.5 * @slantHeight;
+		background: @slantColor;
+	}
+	
+	& when (@left){
+		border-left: 100vw solid @slantColor;
+	}
+	
+	& when not (@left){
+		border-right: 100vw solid @slantColor;
+	}
+
+	.AnimateAll();
+
 }
 
+ul.dramatic{}
+
 div.ground{
+	
 	background: @LearningLime;
+
+	@slantHeight: 3vh;
+
+	p{
+		margin-bottom: 2 * @slantHeight;
+	}
+
+	div.slant-div{
+
+		&:nth-child(2){
+			.Slant(@TeachingTeal, @slantHeight, true);
+		}
+
+		&:nth-child(4){
+			.Slant(@PerspectivePurple, @slantHeight, false);
+		}
+
+		&:nth-child(6){
+			.Slant(@OverallOrange, @slantHeight, true);
+		}
+
+	}
+
 }
 
 div.school-icons{
