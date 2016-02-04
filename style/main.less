@@ -7,6 +7,7 @@
 @AcademicAqua: #1DD3B0;
 @LearningLime: #AFFC41;
 @StudentCentricCeladon: #B2FF9E;
+@OverallOrange: #FA7921;
 
 @MainColor: @LearningLime;
 @MainLight: @MainColor + #222222;
@@ -20,6 +21,8 @@
 
 @textSize: 3vh;
 @tx: @textSize;
+
+@vh: 6.5px;
 
 .HeadFont(){
 	font-family: sans-serif;
@@ -41,6 +44,7 @@ p, h1, h2, h3, ul, li{
 h1, h2, h3{
 	.HeadFont();
 	text-align: center;
+	font-weight: bold;
 }
 
 h1{
@@ -81,16 +85,19 @@ li{
 /*--------------------------------------------*/
 
 html{
-	background: white;
+	background: @StudentCentricCeladon;
 	//Default Text Styles
 	.BodyFont();
 	font-size: @textSize;
-	color: @Charcoal;
+	color: white;
+	margin: 0;
+	padding: 0;
 }
 
 body{
 	margin: 0;
-	width: 98vw;
+	padding: 0;
+	width: 100vw;
 	margin: 0 auto;
 }
 
@@ -103,12 +110,66 @@ body{
 /*---> STRUCTURE <----------------------------*/
 /*--------------------------------------------*/
 
+@DefaultPadding: 4vw;
+
 div.scene{
-	width: 100vw;
+	margin: 0 auto;
+	padding: @DefaultPadding;
+	width: 100vw - (2 * @DefaultPadding);
 }
 
 div.sky{
 	background: @AcademicAqua;
+}
+
+div.slant-left{
+	
+}
+
+div.ground{
+	background: @LearningLime;
+}
+
+div.school-icons{
+
+	width: 65vw;
+	padding: 1vw;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: -2 * @DefaultPadding;
+
+	img{
+		display: inline-block;
+		width: 20vw;
+		margin: 1vw;
+		margin-bottom: 0;
+	}
+
+	img:nth-child(2){
+		width: 15vw;
+	}
+
+}
+
+div.rsvp{
+	
+	background: @PerspectivePurple;
+
+	input{
+
+		background: lighten(@PerspectivePurple, 10%);
+		color: white;
+
+		&:focus{
+			background: white;
+			color: @PerspectivePurple;
+			font-weight: bold;
+		}
+
+		.AnimateAll();
+
+	}
+
 }
 
 /*--------------------------------------------*/
@@ -124,6 +185,13 @@ div.sky{
 input, button, select{
 	outline: none;
 	border: none;
+}
+
+input{
+	display: block;
+	width: 88vw;
+	margin: @DefaultPadding auto;
+	padding: 0.5 * @DefaultPadding;
 }
 
 /*--------------------------------------------*/
