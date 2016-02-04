@@ -2,17 +2,24 @@
 /*---> COLORS <-------------------------------*/
 /*--------------------------------------------*/
 
-@mainColor: #2d0a58;
-@mainLight: @mainColor + #222222;
-@mainDark: @mainColor - #222222;
+@PerspectivePurple: #3C1642;
+@TeachingTeal: #086375;
+@AcademicAqua: #1DD3B0;
+@LearningLime: #AFFC41;
+@StudentCentricCeladon: #B2FF9E;
 
-@charcoal: #1a1a1a;
+@MainColor: @LearningLime;
+@MainLight: @MainColor + #222222;
+@MainDark: @MainColor - #222222;
+
+@Charcoal: #1a1a1a;
 
 /*--------------------------------------------*/
 /*---> FONTS <--------------------------------*/
 /*--------------------------------------------*/
 
 @textSize: 3vh;
+@tx: @textSize;
 
 .HeadFont(){
 	font-family: sans-serif;
@@ -78,7 +85,7 @@ html{
 	//Default Text Styles
 	.BodyFont();
 	font-size: @textSize;
-	color: @charcoal;
+	color: @Charcoal;
 }
 
 body{
@@ -96,7 +103,13 @@ body{
 /*---> STRUCTURE <----------------------------*/
 /*--------------------------------------------*/
 
+div.scene{
+	width: 100vw;
+}
 
+div.sky{
+	background: @AcademicAqua;
+}
 
 /*--------------------------------------------*/
 /*---> HEADER & FOOTER <----------------------*/
@@ -118,7 +131,7 @@ input, button, select{
 /*--------------------------------------------*/
 
 @scrollBar: white;
-@scrollBarBack: @mainColor;
+@scrollBarBack: @MainColor;
 
 ::-webkit-scrollbar{
 	width: 10px;
