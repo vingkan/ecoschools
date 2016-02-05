@@ -19,10 +19,14 @@
 /*---> FONTS <--------------------------------*/
 /*--------------------------------------------*/
 
-@textSize: 3vh;
+@vh: 6.5px;
+
+@textSize: 3 * @vh;
 @tx: @textSize;
 
-@vh: 6.5px;
+@DefaultPadding: 3 * @vh;//4vw;
+@dpy: @DefaultPadding;
+@dpx: 2vw;
 
 .HeadFont(){
 	font-family: sans-serif;
@@ -110,12 +114,10 @@ body{
 /*---> STRUCTURE <----------------------------*/
 /*--------------------------------------------*/
 
-@DefaultPadding: 4vw;
-
 div.scene{
 	margin: 0 auto;
-	padding: @DefaultPadding;
-	width: 100vw - (2 * @DefaultPadding);
+	padding: @dpy 0;
+	width: 100vw;
 }
 
 div.sky{
@@ -162,11 +164,52 @@ input, button, select{
 	border: none;
 }
 
-input{
+input, button{
 	display: block;
-	width: 88vw;
-	margin: @DefaultPadding auto;
-	padding: 0.5 * @DefaultPadding;
+	width: 50 * @vh;
+	font-size: 1.0 * @tx;
+	height: 2.0 * @tx;
+	line-height: 2.0 * @tx;
+	margin: (0.75 * @dpy) auto;
+	padding: (0.25 * @dpy); //Note: uses @dpy for @dpx also
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+button{
+
+	background: @Charcoal;
+	padding: 0;
+	height: 2.5 * @tx;
+	color: white;
+	font-weight: bold;
+
+	&:hover{
+		background: @AcademicAqua;
+	}
+
+	&.success{
+		background: @LearningLime;
+	}
+
+	&.error{
+		background: @OverallOrange;
+	}
+
+	.AnimateAll();
+
+}
+
+h4.form-title{
+	display: block;
+	margin: 0 auto;
+	width: 50 * @vh;
+	text-align: left;
+	font-size: 0.75 * @tx;
+	height: 1.0 * @tx;
+	line-height: 1.0 * @tx;
+	vertical-align: bottom;
+	margin-bottom: -0.5 * @tx;
 }
 
 /*--------------------------------------------*/
@@ -176,16 +219,15 @@ input{
 @slantHeight: 3vh;
 
 div.slant-left{
-	.Slant(@TeachingTeal, @slantHeight, true);
+	.Slant(@OverallOrange, @slantHeight, true);
 }
 
 div.slant-right{
-	.Slant(@OverallOrange, @slantHeight, false);
+	.Slant(@TeachingTeal, @slantHeight, false);
 }
 
 .Slant(@slantColor, @slantHeight, @left){
-	
-	margin: auto (-1 * @DefaultPadding);
+
 	margin-top: -1 * @slantHeight;
 	width: 0;
 	height: 0;
@@ -194,13 +236,13 @@ div.slant-right{
 	
 	& + div.slant-text{
 		
-		width: 100vw - (2 * @DefaultPadding);
-		margin: auto (-1 * @DefaultPadding);
-		padding: @DefaultPadding;
+		width: 100vw - (2 * @dpx);
+		margin: 0 auto;
+		padding: @dpy @dpx;
 		padding-bottom: 1.5 * @slantHeight;
 		background: @slantColor;
 
-		h2{
+		h2, p{
 			text-align: left;
 		}
 
@@ -258,7 +300,22 @@ div#earth{
 	}
 
 	div.circle-div{
+
+		cursor: pointer;
 		.DropShadow();
+
+		span{
+			opacity: 0.0;
+			color: white;
+			.SpanArrowHelper(4 * @vh, @TeachingTeal);
+			.DropShadow();
+			.AnimateAll();
+		}
+
+		&:hover span{
+			opacity: 0.85;
+		}
+
 	}
 
 	div.chord-six div.circle-chord{
@@ -267,6 +324,19 @@ div#earth{
 
 	.AnimateAll();
 
+}
+
+.RotateCircle(){
+	@-webkit-keyframes rotateCircle{
+		from{
+			transform: rotate(0deg);
+		}
+		to{
+			transform: rotate(360deg);
+		}
+	}
+	animation: rotateCircle 10s linear infinite;
+	-webkit-animation: rotateCircle 10s linear infinite;
 }
 
 .SpinningGlobe(){
@@ -298,10 +368,10 @@ div#earth{
 	-webkit-animation: wipeChord 5s linear infinite;
 }
 
-.CreateCircle(@diameter: (50*@vh) - (4 * @DefaultPadding), @elementSize: 0.20 * @diameter){
+.CreateCircle(@diameter: (50*@vh) - (2 * @dpy), @elementSize: 0.20 * @diameter){
 
 	background: @TeachingTeal;
-	margin: (2 * @DefaultPadding) auto;
+	margin: (2 * @dpy) auto;
 	border-radius: 50%;
 	width: @diameter;
 	height: @diameter;
@@ -324,11 +394,12 @@ div#earth{
 		text-align: center;
 		width: @diameter;
 		color: white;
-		top: 50% - (2 * @tx);
+		top: 0%;
 		line-height: 2 * @tx;
 		left: 0%;
 		display: inline;
-		margin: 0 auto;
+		vertical-align: middle;
+		margin: (50% - (0.35 * @tx)) auto;
 		font-size: 1.75 * @textSize;
 	}
 
@@ -405,9 +476,10 @@ div#earth{
 	position: absolute;
 	background: @tagColor;
 	height: @tagSize;
+	width: 6 * @tagSize;
 	line-height: @tagSize;
 	padding: 0.25 * @tagSize;
-	margin-left: -1.75 * @tagSize;
+	margin-left: -2.875 * @tagSize;
 	margin-top: -1.0 * @tagSize;
 
 	.BodyFont();
@@ -415,22 +487,6 @@ div#earth{
 	div.arrow-down{
 		.ArrowDown(@tagColor, 1.0 * @tagSize, 0.5 * @tagSize);
 		margin: auto;
-	}
-
-}
-
-div#earth div.circle-div{
-
-	span{
-		opacity: 0.0;
-		color: white;
-		.SpanArrowHelper(4 * @vh, @TeachingTeal);
-		.DropShadow();
-		.AnimateAll();
-	}
-
-	&:hover span{
-		opacity: 0.85;
 	}
 
 }
