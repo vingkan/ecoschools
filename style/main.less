@@ -367,6 +367,7 @@ div#earth{
 
 		&:hover{
 			background: @StudentCentricCeladon;
+			color: @AcademicAqua;
 		}
 
 		.AnimateAll();
@@ -384,6 +385,53 @@ div#earth{
 	}
 
 	.AnimateAll();
+
+}
+
+/*--------------------------------------------*/
+/*---> ARROWS AND TAGS <----------------------*/
+/*--------------------------------------------*/
+
+.ArrowDown(@triColor: @mainColor, @triWidth: 10 * @vh , @triHeight: 2.5 * @vh){
+	width: 0;
+	height: 0;
+	border-left: (@triWidth / 2) solid transparent;
+	border-right: (@triWidth / 2) solid transparent;
+	border-top: @triHeight solid @triColor;
+}
+
+.SpanArrowHelper(@tagSize, @tagColor){
+
+	position: absolute;
+	background: @tagColor;
+	height: @tagSize;
+	line-height: @tagSize;
+	padding: 0.25 * @tagSize;
+	margin-left: -1.75 * @tagSize;
+	margin-top: -1.0 * @tagSize;
+
+	.BodyFont();
+
+	div.arrow-down{
+		.ArrowDown(@tagColor, 1.0 * @tagSize, 0.5 * @tagSize);
+		margin: auto;
+	}
+
+}
+
+div#earth div.circle-div{
+
+	span{
+		opacity: 0.0;
+		color: white;
+		.SpanArrowHelper(4 * @vh, @TeachingTeal);
+		.DropShadow();
+		.AnimateAll();
+	}
+
+	&:hover span{
+		opacity: 0.85;
+	}
 
 }
 
