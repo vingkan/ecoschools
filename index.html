@@ -73,6 +73,7 @@
 					</div>
 				</div>
 			</div>
+			<a href="#contact-form"><button>Help Build the Future</button></a>
 			<h1>What does it mean to be an ecosystem?</h1>
 			<br>
 			<div class="slant-left"></div>
@@ -89,7 +90,7 @@
 				<h2>Students will be connected to each other.</h2>
 			</div>
 			<div class="slant-right"></div>
-			<div class="slant-text">
+			<div id="contact-form" class="slant-text">
 				<h2>Students will lead the way.</h2>
 				<p>We are hosting workshops for high school students to redesign learning experiences: a prototype of how we believe future schools will improve by acting on the needs and ideas of their students.</p>
 				<h4 class="form-title">Your Name</h4>
@@ -125,19 +126,21 @@
 		<script type="text/javascript">
 
 			$('.student-form').change(function(event){
-				if(name && email){
-					event.target.classList.remove('error');
-					event.target.innerText = 'I want to help!';
+				var target = document.getElementById('student-submit');
+				var name = document.getElementById('student-name').value;
+				var email = document.getElementById('student-email').value;
+				if(name && email && email.includes('@')){
+					target.classList.remove('error');
+					target.innerText = 'I want to help!';
 				}
 			})
 
 			$('#student-submit').click(function(event){
-				//console.log(event)
 				var name = document.getElementById('student-name').value;
 				var email = document.getElementById('student-email').value;
-				if(!name || !email){
+				if(!name || !email || !email.includes('@')){
 					event.target.classList.add('error');
-					event.target.innerText = 'Please add a name and email address.';
+					event.target.innerText = 'Please add name and email.';
 				}
 				else{
 					event.target.classList.remove('error');
@@ -150,7 +153,6 @@
 					//firebase.push(student);
 					event.target.classList.add('success');
 					event.target.innerText = 'Let the adventure begin!';
-					console.log(student)
 				}
 			});
 
