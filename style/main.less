@@ -42,7 +42,7 @@
 
 p, h1, h2, h3, ul, li{
 	.BodyFont();
-	margin: (0.5 * @textSize) auto;
+	margin: (1 * @dpy) auto;
 }
 
 h1, h2, h3{
@@ -126,6 +126,7 @@ div.scene{
 
 div.sky{
 	background: @AcademicAqua;
+	padding-bottom: 0;
 }
 
 div.ground{
@@ -153,6 +154,29 @@ div.rsvp{
 
 }
 
+.center-text{
+	text-align: center !important;
+}
+
+button#landing-button, button#student-submit{
+	background: @OverallOrange;
+	&:hover{
+		background: @TeachingTeal;
+	}
+}
+
+button#landing-button{
+	margin: (4 * @dpy) auto;
+}
+
+input.student-form{
+	background: darken(@PerspectivePurple, 10%);
+	color: white;
+	&:focus{
+		background: lighten(@PerspectivePurple, 10%);
+	}
+}
+
 /*--------------------------------------------*/
 /*---> HEADER & FOOTER <----------------------*/
 /*--------------------------------------------*/
@@ -178,6 +202,7 @@ input, button{
 	padding: (0.25 * @dpy); //Note: uses @dpy for @dpx also
 	box-sizing: border-box;
 	border-radius: 3px;
+	.AnimateAll();
 }
 
 input{
@@ -201,10 +226,8 @@ button{
 	}
 
 	&.error{
-		background: @OverallOrange;
+		background: @Charcoal;
 	}
-
-	.AnimateAll();
 
 }
 
@@ -226,13 +249,21 @@ h4.form-title{
 
 @slantHeight: 3vh;
 
-div.slant-left{
+div#slants-space div.slant{
+	&:nth-of-type(1){.Slant(@TeachingTeal, @slantHeight, true);}
+	&:nth-of-type(3){.Slant(@OverallOrange, @slantHeight, false);}
+	&:nth-of-type(5){.Slant(@LearningLime, @slantHeight, true);}
+	&:nth-of-type(7){.Slant(@PerspectivePurple, @slantHeight, false);}
+}
+
+/*div.slant-left{
 	.Slant(@OverallOrange, @slantHeight, true);
 }
 
 div.slant-right{
-	.Slant(@TeachingTeal, @slantHeight, false);
-}
+	.Slant(@PerspectivePurple, @slantHeight, false);
+}*/
+
 
 .Slant(@slantColor, @slantHeight, @left){
 
@@ -286,6 +317,10 @@ div.circle-wrapper{
 	& when not (@down){
 		box-shadow: (-1 * @shadowSize) (-1 * @shadowSize) 0 rgba(0, 0, 0, 0.1);	
 	}
+}
+
+div#xq-circle div.chord-six div.circle-chord{
+	.WipingChord(white, @LearningLime);
 }
 
 div#earth{
@@ -360,16 +395,16 @@ div#earth{
 	-webkit-animation: spinGlobe 10s linear infinite;
 }
 
-.WipingChord(){
+.WipingChord(@startColor: @OverallOrange, @endColor: @AcademicAqua){
 	@-webkit-keyframes wipeChord{
 		0%{
-			border-color: @OverallOrange;
+			border-color: @startColor;
 		}
 		50%{
-			border-color: @AcademicAqua;
+			border-color: @endColor;
 		}
 		100%{
-			border-color: @OverallOrange;
+			border-color: @startColor;
 		}
 	}
 	animation: wipeChord 5s linear infinite;

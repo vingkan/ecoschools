@@ -73,33 +73,37 @@
 					</div>
 				</div>
 			</div>
-			<a href="#contact-form"><button>Help Build the Future</button></a>
+			<a href="#contact-form"><button id="landing-button">Help Build the Future</button></a>
 			<h1>What does it mean to be an ecosystem?</h1>
 			<br>
-			<div class="slant-left"></div>
-			<div class="slant-text">
-				<h2>Learning will be connected to doing.</h2>
-				<p></p>
+			<div id="slants-space">
+				<div class="slant slant-left"></div>
+				<div class="slant-text">
+					<h2>Learning will be connected to doing.</h2>
+					<p></p>
+				</div>
+				<div class="slant slant-right"></div>
+				<div class="slant-text">
+					<h2>Schools will be connected to communities.</h2>
+				</div>
+				<div class="slant slant-left"></div>
+				<div class="slant-text">
+					<h2>Students will be connected to each other.</h2>
+				</div>
+				<div id="contact-form" class="slant slant-right"></div>
+				<div class="slant-text">
+					<h2 class="center-text">Students will lead the way.</h2>
+					<p class="center-text">We are hosting workshops for high school students to redesign learning experiences: a prototype of how we believe future schools will improve by acting on the needs and ideas of their students. Let us know if you want to join or help in some other way.</p>
+					<h4 class="form-title">Your Name</h4>
+					<input id="student-name" class="student-form" type="text">
+					<h4 class="form-title">Your Email</h4>
+					<input id="student-email" class="student-form" type="text">
+					<button id="student-submit">I want to help!</button>
+				</div>
 			</div>
-			<div class="slant-right"></div>
-			<div class="slant-text">
-				<h2>Schools will be connected to communities.</h2>
-			</div>
-			<div class="slant-left"></div>
-			<div class="slant-text">
-				<h2>Students will be connected to each other.</h2>
-			</div>
-			<div class="slant-right"></div>
-			<div id="contact-form" class="slant-text">
-				<h2>Students will lead the way.</h2>
-				<p>We are hosting workshops for high school students to redesign learning experiences: a prototype of how we believe future schools will improve by acting on the needs and ideas of their students.</p>
-				<h4 class="form-title">Your Name</h4>
-				<input id="student-name" class="student-form" type="text">
-				<h4 class="form-title">Your Email</h4>
-				<input id="student-email" class="student-form" type="text">
-				<button id="student-submit">I want to help!</button>
-			</div>
-			<div class="circle-wrapper">
+		</div>
+		<div class="scene ground">
+			<div id="xq-circle" class="circle-wrapper">
 				<div class="circle">
 					<h1 class="circle-element">An XQ Super School</h1>
 					<div class="chord-six">
@@ -124,6 +128,13 @@
 
 
 		<script type="text/javascript">
+
+			$('a').click(function(){
+				$('html, body').animate({
+					scrollTop: $( $.attr(this, 'href') ).offset().top
+				}, 500);
+				return false;
+			});
 
 			$('.student-form').change(function(event){
 				var target = document.getElementById('student-submit');
