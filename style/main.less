@@ -122,84 +122,8 @@ div.sky{
 	background: @AcademicAqua;
 }
 
-.Slant(@slantColor, @slantHeight, @left){
-	
-	margin: auto (-1 * @DefaultPadding);
-	margin-top: -1 * @slantHeight;
-	width: 0;
-	height: 0;
-	border-top: @slantHeight solid transparent;
-	border-bottom: -100vw solid transparent;
-	
-	& + div.dramatic{
-		width: 100vw;
-		margin: auto (-1 * @DefaultPadding);
-		padding: @DefaultPadding;
-		padding-bottom: 1.5 * @slantHeight;
-		background: @slantColor;
-	}
-	
-	& when (@left){
-		border-left: 100vw solid @slantColor;
-	}
-	
-	& when not (@left){
-		border-right: 100vw solid @slantColor;
-	}
-
-	.AnimateAll();
-
-}
-
-ul.dramatic{}
-
 div.ground{
-	
 	background: @LearningLime;
-
-	@slantHeight: 3vh;
-
-	p{
-		margin-bottom: 2 * @slantHeight;
-	}
-
-	div.slant-div{
-
-		&:nth-child(2){
-			.Slant(@TeachingTeal, @slantHeight, true);
-		}
-
-		&:nth-child(4){
-			.Slant(@PerspectivePurple, @slantHeight, false);
-		}
-
-		&:nth-child(6){
-			.Slant(@OverallOrange, @slantHeight, true);
-		}
-
-	}
-
-}
-
-div.school-icons{
-
-	width: 65vw;
-	padding: 1vw;
-	display: block;
-	margin: 0 auto;
-	margin-bottom: -2 * @DefaultPadding;
-
-	img{
-		display: inline-block;
-		width: 20vw;
-		margin: 1vw;
-		margin-bottom: 0;
-	}
-
-	img:nth-child(2){
-		width: 15vw;
-	}
-
 }
 
 div.rsvp{
@@ -246,18 +170,72 @@ input{
 }
 
 /*--------------------------------------------*/
+/*---> SLANT WRAPPERS <-----------------------*/
+/*--------------------------------------------*/
+
+@slantHeight: 3vh;
+
+div.slant-left{
+	.Slant(@TeachingTeal, @slantHeight, true);
+}
+
+div.slant-right{
+	.Slant(@OverallOrange, @slantHeight, false);
+}
+
+.Slant(@slantColor, @slantHeight, @left){
+	
+	margin: auto (-1 * @DefaultPadding);
+	margin-top: -1 * @slantHeight;
+	width: 0;
+	height: 0;
+	border-top: @slantHeight solid transparent;
+	border-bottom: -100vw solid transparent;
+	
+	& + div.slant-text{
+		
+		width: 100vw - (2 * @DefaultPadding);
+		margin: auto (-1 * @DefaultPadding);
+		padding: @DefaultPadding;
+		padding-bottom: 1.5 * @slantHeight;
+		background: @slantColor;
+
+		h2{
+			text-align: left;
+		}
+
+	}
+	
+	& when (@left){
+		border-left: 100vw solid @slantColor;
+	}
+	
+	& when not (@left){
+		border-right: 100vw solid @slantColor;
+	}
+
+	.AnimateAll();
+
+}
+
+/*--------------------------------------------*/
 /*---> CIRCLE BULLSHIT <----------------------*/
 /*--------------------------------------------*/
 
 //As instructed in S/O:
 //http://stackoverflow.com/questions/12813573/position-icons-into-circle
 
-.CreateCircle(@diameter){
-
+div.circle-wrapper{
+	.CreateCircle();
 }
 
-.DropShadow(@shadowSize: 5px){
-	box-shadow: @shadowSize @shadowSize 0 rgba(0, 0, 0, 0.1);
+.DropShadow(@shadowSize: 5px, @down: true){
+	& when (@down){
+		box-shadow: @shadowSize @shadowSize 0 rgba(0, 0, 0, 0.1);	
+	}
+	& when not (@down){
+		box-shadow: (-1 * @shadowSize) (-1 * @shadowSize) 0 rgba(0, 0, 0, 0.1);	
+	}
 }
 
 div#earth{
@@ -274,6 +252,10 @@ div#earth{
 		position: relative;
 		top: 50%;
 	}*/
+
+	h1.circle-element{
+		text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	}
 
 	div.circle-div{
 		.DropShadow();
@@ -297,6 +279,7 @@ div#earth{
 		}
 	}
 	animation: spinGlobe 10s linear infinite;
+	-webkit-animation: spinGlobe 10s linear infinite;
 }
 
 .WipingChord(){
@@ -312,19 +295,17 @@ div#earth{
 		}
 	}
 	animation: wipeChord 5s linear infinite;
+	-webkit-animation: wipeChord 5s linear infinite;
 }
 
-div.circle-wrapper{
+.CreateCircle(@diameter: (50*@vh) - (4 * @DefaultPadding), @elementSize: 0.20 * @diameter){
 
-	@diameter: (50*@vh) - (4 * @DefaultPadding);
 	background: @TeachingTeal;
 	margin: (2 * @DefaultPadding) auto;
 	border-radius: 50%;
 	width: @diameter;
 	height: @diameter;
 	position: relative;
-
-	@elementSize: 0.20 * @diameter;
 
 	.CircularPosition(@dm, @angle){
 		transform: rotate(-1 * @angle) translate(0.5 * @dm) rotate(@angle);
