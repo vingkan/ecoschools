@@ -256,22 +256,27 @@ input{
 
 }
 
+.DropShadow(@shadowSize: 5px){
+	box-shadow: @shadowSize @shadowSize 0 rgba(0, 0, 0, 0.1);
+}
+
 div#earth{
 
 	background: url('img/earth-long-double.png');
 	background-size: auto 100%;
 	background-repeat: repeat-x;
 	.SpinningGlobe();
-	transform: rotate(-12deg);
+	//transform: rotate(-12deg);
+	.DropShadow();
 
-	div.circle{
-		transform: rotate(12deg);
+	/*div.circle{
+		//transform: rotate(12deg);
 		position: relative;
 		top: 50%;
-	}
+	}*/
 
-	h1{
-		text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	div.circle-div{
+		.DropShadow();
 	}
 
 	div.chord-six div.circle-chord{
@@ -338,7 +343,8 @@ div.circle-wrapper{
 		text-align: center;
 		width: @diameter;
 		color: white;
-		top: 50% - (1.75 * @tx);
+		top: 50% - (2 * @tx);
+		line-height: 2 * @tx;
 		left: 0%;
 		display: inline;
 		margin: 0 auto;
