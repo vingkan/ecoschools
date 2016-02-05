@@ -85,7 +85,7 @@ li{
 /*--------------------------------------------*/
 
 html{
-	background: @StudentCentricCeladon;
+	background: @PerspectivePurple;
 	//Default Text Styles
 	.BodyFont();
 	font-size: @textSize;
@@ -252,11 +252,68 @@ input{
 //As instructed in S/O:
 //http://stackoverflow.com/questions/12813573/position-icons-into-circle
 
+.CreateCircle(@diameter){
+
+}
+
+div#earth{
+
+	background: url('img/earth-long-double.png');
+	background-size: auto 100%;
+	background-repeat: repeat-x;
+	.SpinningGlobe();
+	transform: rotate(-12deg);
+
+	div.circle{
+		transform: rotate(12deg);
+		position: relative;
+		top: 50%;
+	}
+
+	h1{
+		text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+	}
+
+	div.chord-six div.circle-chord{
+		.WipingChord();
+	}
+
+	.AnimateAll();
+
+}
+
+.SpinningGlobe(){
+	@-webkit-keyframes spinGlobe{
+		from{
+			background-position: right top;
+		}
+		to{
+			background-position: left top;
+		}
+	}
+	animation: spinGlobe 10s linear infinite;
+}
+
+.WipingChord(){
+	@-webkit-keyframes wipeChord{
+		0%{
+			border-color: @OverallOrange;
+		}
+		50%{
+			border-color: @AcademicAqua;
+		}
+		100%{
+			border-color: @OverallOrange;
+		}
+	}
+	animation: wipeChord 5s linear infinite;
+}
+
 div.circle-wrapper{
 
 	@diameter: (50*@vh) - (4 * @DefaultPadding);
-	margin: @DefaultPadding auto;
-	background: @LearningLime;
+	background: @TeachingTeal;
+	margin: (2 * @DefaultPadding) auto;
 	border-radius: 50%;
 	width: @diameter;
 	height: @diameter;
@@ -280,31 +337,15 @@ div.circle-wrapper{
 	h1.circle-element{
 		text-align: center;
 		width: @diameter;
-		color: @TeachingTeal;
+		color: white;
 		top: 50% - (1.75 * @tx);
 		left: 0%;
 		display: inline;
 		margin: 0 auto;
+		font-size: 1.75 * @textSize;
 	}
 
 	div.circle-chord{
-
-		.WipingChord(){
-			@-webkit-keyframes wipeChord{
-				0%{
-					border-color: @OverallOrange;
-				}
-				50%{
-					border-color: @AcademicAqua;
-				}
-				100%{
-					border-color: @OverallOrange;
-				}
-			}
-			animation: wipeChord 5s linear infinite;
-		}
-
-		//.WipingChord();
 
 		.circle-element();
 		left: 0%;
@@ -312,48 +353,47 @@ div.circle-wrapper{
 		margin: 0 auto;
 		height: 0;
 		width: 0.5 * @diameter;
-		border: 2px dashed @OverallOrange;
-		transform: translate(-0.125 * @diameter, 0.125 * @diameter * sqrt(3)) rotate(60deg);
-
+		border: 3px dashed @OverallOrange;
+	
 	}
 
 	@half-x: 0.125 * @diameter;
 	@x-root-3: 0.125 * @diameter * sqrt(3);
 
-	div.circle-chord{
+	div.chord-six div.circle-chord{
 
-		&:nth-child(3){
-			transform: rotate(180deg) translate(-2 * @half-x, -2 * @x-root-3);
-		}
-		&:nth-child(4){
-			transform: rotate(120deg) translate(-1 * @half-x, -3 * @x-root-3);
-		}
-		&:nth-child(5){
-			transform: rotate(120deg) translate(-1 * @half-x, -3 * @x-root-3);
-		}
-		&:nth-child(6){
-			transform: rotate(240deg) translate(0 * @half-x, 0 * @x-root-3);
-		}
-
+		&:nth-child(1){transform: translate(-1 * @half-x, 1 * @x-root-3) rotate(60deg);}
+		&:nth-child(2){transform: rotate(180deg) translate(-2 * @half-x, -2 * @x-root-3);}
+		&:nth-child(3){transform: rotate(120deg) translate(-1 * @half-x, -3 * @x-root-3);}
+		&:nth-child(4){transform: rotate(60deg) translate(1 * @half-x, -3 * @x-root-3);}
+		&:nth-child(5){transform: rotate(180deg) translate(-2 * @half-x, 2 * @x-root-3);}
+		&:nth-child(6){transform: rotate(120deg) translate(-1 * @half-x, 1 * @x-root-3);}
 
 	}
 
-	img{
+	div.circle-div{
 
-		&:nth-child(8){.CircularPosition(@diameter, 0deg)}
-		&:nth-child(9){.CircularPosition(@diameter, 60deg)}
-		&:nth-child(10){.CircularPosition(@diameter, 120deg)}
-		&:nth-child(11){.CircularPosition(@diameter, 180deg)}
-		&:nth-child(12){.CircularPosition(@diameter, 240deg)}
-		&:nth-child(13){.CircularPosition(@diameter, 300deg)}
+		background: @OverallOrange;
+		border-radius: 50%;
+		text-align: center;
+		line-height: @elementSize;
 
 		&:hover{
-			width: 1.5 * @elementSize;
-			height: 1.5 * @elementSize;
+			background: @StudentCentricCeladon;
 		}
 
 		.AnimateAll();
 		
+	}
+
+	div.circle-six div.circle-div{
+
+		&:nth-child(1){.CircularPosition(@diameter, 0deg)}
+		&:nth-child(2){.CircularPosition(@diameter, 60deg)}
+		&:nth-child(3){.CircularPosition(@diameter, 120deg)}
+		&:nth-child(4){.CircularPosition(@diameter, 180deg)}
+		&:nth-child(5){.CircularPosition(@diameter, 240deg)}
+		&:nth-child(6){.CircularPosition(@diameter, 300deg)}
 	}
 
 	.AnimateAll();
@@ -372,6 +412,8 @@ div.circle-wrapper{
 	height: 10px;
 	background: @scrollBarBack;
 	z-index: 50;
+	position: absolute;
+	display: none;
 }
 
 ::-webkit-scrollbar-button{
